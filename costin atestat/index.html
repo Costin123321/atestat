@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafuri Neorientate</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS pentru slider */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+            .slider .exemplu {
+                min-width: 100%;
+                padding: 20px;
+                box-sizing: border-box;
+                text-align: center;
+            }
+
+            .slider img {
+                width: 100%;
+                height: auto;
+            }
+
+        .navigation-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>Grafuri Neorientate</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#teorie">Teorie</a></li>
+                <li><a href="#exemple">Exemple</a></li>
+                <li><a href="#implementare">Implementare</a></li>
+                <li><a href="#concluzii">Concluzii</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Pagina Principală -->
+    <section id="home">
+        <h2>Introducere</h2>
+        <p>Grafurile neorientate sunt structuri matematice utilizate pentru a modela relații între obiecte. În această lucrare, vom explora diferite concepte și aplicații ale grafurilor neorientate. Vom analiza 3 algoritmi importanți: <b>DFS (Depth First Search)</b>, <b>BFS (Breadth First Search)</b> și <b>Algoritmul Dijkstra</b>.</p>
+    </section>
+
+    <!-- Teorie -->
+    <section id="teorie">
+        <h2>Teorie</h2>
+        <h3>Ce sunt grafurile neorientate?</h3>
+        <p>Un graf neorientat este o structură de date formată dintr-o mulțime de noduri (sau vârfuri) și o mulțime de arce care le leagă. Spre deosebire de grafurile orientate, arcele nu au o direcție specifică.</p>
+        <h3>Proprietăți</h3>
+        <ul>
+            <li>Conectivitate</li>
+            <li>Cicluri</li>
+            <li>Arbori și componente conexe</li>
+        </ul>
+        <h3>Algoritmi importanți</h3>
+        <ul>
+            <li>DFS (Depth First Search)</li>
+            <li>BFS (Breadth First Search)</li>
+            <li>Algoritmul Dijkstra pentru cel mai scurt drum</li>
+        </ul>
+    </section>
+
+    <!-- Exemple -->
+    <section id="exemple">
+        <h2>Exemple</h2>
+
+        <div class="slider-container">
+            <div class="slider" id="exampleSlider">
+                <!-- Exemplul 1: BFS -->
+                <div class="exemplu">
+                    <h3>Exemplu 1: Algoritmul BFS (Breadth First Search)</h3>
+                    <p>Algoritmul BFS parcurge un graf pornind de la un nod și vizitează nodurile vecine înainte de a vizita nodurile de mai departe.</p>
+                    <pre>
+<code>
+// Cod JavaScript pentru BFS
+function bfs(graph, startNode) {
+    let visited = new Set();
+    let queue = [startNode];
+
+    while (queue.length > 0) {
+        let node = queue.shift();
+        if (!visited.has(node)) {
+            visited.add(node);
+            console.log(node);
+            let neighbors = graph[node] || [];
+            for (let neighbor of neighbors) {
+                queue.push(neighbor);
+            }
+        }
+    }
+}
+
+let graph = {
+    A: ['B', 'C'],
+    B: ['A', 'D'],
+    C: ['A', 'D'],
+    D: ['B', 'C']
+};
+bfs(graph, 'A');
+</code>
+                    </pre>
+                    <div class="exemplu">
+                        <img src="graf_bfs.png" alt="Graf BFS">
+                        <p>Acesta este un exemplu de execuție BFS pe un graf.</p>
+                    </div>
+                </div>
+
+                <!-- Exemplul 2: DFS -->
+                <div class="exemplu">
+                    <h3>Exemplu 2: Algoritmul DFS (Depth First Search)</h3>
+                    <p>Algoritmul DFS explorează grafurile adânc pe fiecare ramură înainte de a reveni înapoi și a explora ramurile vecine.</p>
+                    <pre>
+<code>
+// Cod JavaScript pentru DFS
+function dfs(graph, node, visited = new Set()) {
+    if (!visited.has(node)) {
+        visited.add(node);
+        console.log(node);
+        let neighbors = graph[node] || [];
+        for (let neighbor of neighbors) {
+            dfs(graph, neighbor, visited);
+        }
+    }
+}
+
+let graph = {
+    A: ['B', 'C'],
+    B: ['A', 'D'],
+    C: ['A', 'D'],
+    D: ['B', 'C']
+};
+dfs(graph, 'A');
+</code>
+                    </pre>
+                    <div class="exemplu">
+                        <img src="graf_dfs.png" alt="Graf DFS">
+                        <p>Acesta este un exemplu de execuție DFS pe un graf.</p>
+                    </div>
+                </div>
+
+                <!-- Exemplul 3: Algoritmul Dijkstra -->
+                <div class="exemplu">
+                    <h3>Exemplu 3: Algoritmul Dijkstra</h3>
+                    <p>Algoritmul Dijkstra găsește cel mai scurt drum între două noduri într-un graf ponderat.</p>
+                    <pre>
+<code>
+// Cod JavaScript pentru Dijkstra
+function dijkstra(graph, start) {
+    let distances = {};
+    let parents = {};
+    let visited = new Set();
+    
+    // Initialize distances
+    for (let node in graph) {
+        distances[node] = Infinity;
+    }
+    distances[start] = 0;
+    
+    while (visited.size < Object.keys(graph).length) {
+        let currentNode = null;
+        for (let node in graph) {
+            if (!visited.has(node) && (currentNode === null || distances[node] < distances[currentNode])) {
+                currentNode = node;
+            }
+        }
+        
+        for (let neighbor in graph[currentNode]) {
+            let alt = distances[currentNode] + graph[currentNode][neighbor];
+            if (alt < distances[neighbor]) {
+                distances[neighbor] = alt;
+                parents[neighbor] = currentNode;
+            }
+        }
+        
+        visited.add(currentNode);
+    }
+    
+    return distances;
+}
+
+let graph = {
+    A: {B: 1, C: 4},
+    B: {A: 1, C: 2, D: 5},
+    C: {A: 4, B: 2, D: 1},
+    D: {B: 5, C: 1}
+};
+
+console.log(dijkstra(graph, 'A'));
+</code>
+                    </pre>
+                    <div class="exemplu">
+                        <img src="graf_dijkstra.png" alt="Graf Dijkstra">
+                        <p>Acesta este un exemplu de execuție Dijkstra pe un graf ponderat.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Butoane de navigare -->
+            <button class="navigation-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="navigation-btn next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- Implementare -->
+    <section id="implementare">
+        <h2>Implementare</h2>
+        <p>Codul pentru implementarea unui algoritm BFS pe un graf neorientat:</p>
+        <pre>
+<code>
+// Codul BFS este deja inclus mai sus.
+</code>
+        </pre>
+    </section>
+
+    <!-- Concluzii -->
+    <section id="concluzii">
+        <h2>Concluzii</h2>
+        <p>
+            <b>Grafurile neorientate</b> sunt un instrument esențial în diverse domenii ale științei și tehnologiei...
+        </p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Ai întrebări sau sugestii? Contactează-ne!</p>
+        <form>
+            <input type="text" placeholder="Nume" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Mesaj" required></textarea>
+            <button type="submit">Trimite</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Grafuri Neorientate</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        let currentSlide = 0;
+
+        function moveSlide(direction) {
+            const slides = document.querySelectorAll('.slider .exemplu');
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            document.getElementById('exampleSlider').style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+    </script>
+</body>
+</html>
