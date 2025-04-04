@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafuri Neorientate</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Fundal pentru header */
+        header {
+            background-image: url('banner.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Fundal pentru site */
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Pozele de exemple sa fie de dimensiuni egale si mai mici */
+        .exemplu img {
+            width: 100%; /* Păstrează raportul de aspect */
+            height: 200px; /* Dimensiune fixă pentru a le face egale */
+            object-fit: cover;
+            margin: 10px auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+            .exemplu img:hover {
+                transform: scale(1.05); /* Efect de zoom la hover */
+            }
+
+        /* Navigarea între exemple de cod */
+        .butoane-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+            .butoane-nav button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+                .butoane-nav button:hover {
+                    background-color: #45a049;
+                }
+
+        /* Stilizare pentru secțiunea implementare */
+        pre {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            overflow: auto;
+            font-family: 'Courier New', Courier, monospace;
+            color: #333;
+        }
+
+        /* Stilizare pentru formulare */
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+            form input,
+            form textarea {
+                margin: 10px 0;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                transition: border-color 0.3s ease;
+            }
+
+                form input:focus,
+                form textarea:focus {
+                    border-color: #4CAF50;
+                }
+
+            form button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+                form button:hover {
+                    background-color: #45a049;
+                }
+
+        /* Popup pentru explicatii detaliate */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+            .popup button {
+                background-color: #f44336;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .popup button:hover {
+                    background-color: #d32f2f;
+                }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>Grafuri Neorientate</h1>
+        </div>
+    </header>
+
+    <!-- Pagina Principală -->
+    <section id="home" class="content-section">
+        <h2>Introducere</h2>
+        <p>Grafurile neorientate sunt structuri matematice utilizate pentru a modela relații între obiecte. În această lucrare, vom explora diferite concepte și aplicații ale grafurilor neorientate.</p>
+    </section>
+
+    <!-- Teorie -->
+    <section id="teorie" class="content-section">
+        <h2>Teorie</h2>
+        <h3>Ce sunt grafurile neorientate?</h3>
+        <p>Un graf neorientat este o structură de date formată dintr-o mulțime de noduri (sau vârfuri) și o mulțime de arce care le leagă. Spre deosebire de grafurile orientate, arcele nu au o direcție specifică.</p>
+        <h3>Proprietăți</h3>
+        <ul>
+            <li>Conectivitate</li>
+            <li>Cicluri</li>
+            <li>Arbori și componente conexe</li>
+        </ul>
+        <h3>Algoritmi importanți</h3>
+        <ul>
+            <li>DFS (Depth First Search)</li>
+            <li>BFS (Breadth First Search)</li>
+            <li>Algoritmul Dijkstra pentru cel mai scurt drum</li>
+        </ul>
+    </section>
+
+    <!-- Exemple -->
+    <section id="exemple" class="content-section">
+        <h2>Exemple</h2>
+        <!-- Exemplu 1: Grafic de rețea socială -->
+        <h3>Exemplu 1: Grafic de rețea socială</h3>
+        <p>Rețelele de socializare pot fi modelate ca grafuri neorientate, în care nodurile reprezintă persoane și muchiile reprezintă relații de prietenie.</p>
+        <div class="exemplu">
+            <img src="graf3.png" alt="Graf rețea socială">
+            <p>Acesta este un exemplu de rețea socială în care utilizatorii sunt conectați prin prietenii.</p>
+        </div>
+
+        <!-- Exemplu 2: Grafic de rută de transport -->
+        <h3>Exemplu 2: Grafic de rută de transport între orașe</h3>
+        <p>Grafurile neorientate sunt utile și pentru a modela rețelele de transport, unde orașele sunt noduri și drumurile care le conectează sunt muchii.</p>
+        <div class="exemplu">
+            <img src="graf2.png" alt="Graf rută de transport">
+            <p>Acesta este un exemplu de rețea de transport între orașe, unde fiecare drum este o muchie între două noduri (orașe).</p>
+        </div>
+
+        <!-- Exemplu 3: Grafic de componentă conexă -->
+        <h3>Exemplu 3: Grafic de componentă conexă</h3>
+        <p>Într-un graf, componentele conexe sunt subgrafuri în care există un drum între orice două noduri. Acest exemplu arată cum un graf poate fi folosit pentru a analiza conectivitatea rețelelor.</p>
+        <div class="exemplu">
+            <img src="graf1.png" alt="Grafic componente conexe">
+            <p>Acesta este un exemplu de graf în care nodurile sunt conectate prin muchii, formând componente conexe.</p>
+        </div>
+
+
+        <!-- Implementare -->
+        <section id="implementare" class="content-section">
+            <h2>Implementare</h2>
+            <div id="code-example">
+                <!-- Cod BFS -->
+                <div id="bfs" class="exemplu-cod">
+                    <h3>BFS (Breadth First Search)</h3>
+                    <pre>
+<code>
+function bfs(graph, startNode) {
+    let visited = new Set();
+    let queue = [startNode];
+    while (queue.length > 0) {
+        let node = queue.shift();
+        if (!visited.has(node)) {
+            visited.add(node);
+            console.log(node);
+            let neighbors = graph[node] || [];
+            for (let neighbor of neighbors) {
+                queue.push(neighbor);
+            }
+        }
+    }
+}
+let graph = {A: ['B', 'C'], B: ['A', 'D'], C: ['A', 'D'], D: ['B', 'C']};
+bfs(graph, 'A');
+</code>
+                </pre>
+                </div>
+
+                <!-- Cod DFS -->
+                <div id="dfs" class="exemplu-cod" style="display:none;">
+                    <h3>DFS (Depth First Search)</h3>
+                    <pre>
+<code>
+function dfs(graph, startNode, visited = new Set()) {
+    if (visited.has(startNode)) return;
+    visited.add(startNode);
+    console.log(startNode);
+    let neighbors = graph[startNode] || [];
+    for (let neighbor of neighbors) {
+        dfs(graph, neighbor, visited);
+    }
+}
+let graph = {A: ['B', 'C'], B: ['A', 'D'], C: ['A', 'D'], D: ['B', 'C']};
+dfs(graph, 'A');
+</code>
+                </pre>
+                </div>
+
+                <!-- Cod Dijkstra -->
+                <div id="dijkstra" class="exemplu-cod" style="display:none;">
+                    <h3>Dijkstra</h3>
+                    <pre>
+<code>
+function dijkstra(graph, startNode) {
+    let distances = {};
+    let visited = new Set();
+    distances[startNode] = 0;
+    let nodes = Object.keys(graph);
+
+    while (nodes.length > 0) {
+        let closestNode = nodes.reduce((closest, node) => 
+            distances[node] < distances[closest] ? node : closest, nodes[0]);
+        
+        nodes = nodes.filter(node => node !== closestNode);
+        let neighbors = graph[closestNode] || {};
+        
+        for (let neighbor in neighbors) {
+            let distance = distances[closestNode] + neighbors[neighbor];
+            if (distance < (distances[neighbor] || Infinity)) {
+                distances[neighbor] = distance;
+            }
+        }
+    }
+
+    return distances;
+}
+let graph = {A: {'B': 5, 'C': 2}, B: {'A': 5, 'C': 1}, C: {'A': 2, 'B': 1}};
+console.log(dijkstra(graph, 'A'));
+</code>
+                </pre>
+                </div>
+            </div>
+
+            <!-- Butoane pentru navigarea între exemple -->
+            <div class="butoane-nav">
+                <button onclick="changeExample('bfs')">BFS</button>
+                <button onclick="changeExample('dfs')">DFS</button>
+                <button onclick="changeExample('dijkstra')">Dijkstra</button>
+            </div>
+        </section>
+
+        <!-- Concluzii -->
+        <section id="concluzii" class="content-section">
+            <h2>Concluzii</h2>
+            <p>Grafurile neorientate sunt structuri esențiale în informatică și au multiple aplicații în domenii precum rețelele de calculatoare, rețelele sociale și optimizarea traseelor. Aceste structuri sunt folosite în analiza și rezolvarea problemelor de conectivitate și flux de informație. Algoritmii precum BFS, DFS și Dijkstra sunt instrumente fundamentale pentru explorarea grafurilor. BFS este utilizat pentru a explora grafurile pe niveluri, DFS pentru a explora în profunzime, iar Dijkstra pentru a găsi cel mai scurt drum între noduri într-un graf ponderat.</p>
+        </section>
+
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="content-section">
+            <h2>Testul Tău despre Grafuri Neorientate</h2>
+            <form id="quizForm">
+                <div class="question">
+                    <p>1. Ce este un graf neorientat?</p><br />
+                    <label><input type="radio" name="q1" value="a"> Un graf în care arcele au o direcție specifică.</label><br>
+                    <label><input type="radio" name="q1" value="b"> Un graf în care arcele nu au o direcție specifică. </label><br>
+                    <label><input type="radio" name="q1" value="c"> Un graf în care nu există niciun arc. </label><br>
+                    <label><input type="radio" name="q1" value="d"> Un graf în care toate nodurile sunt conectate prin muchii. </label><br>
+                </div>
+
+                <div class="question">
+                    <p>2. Ce reprezintă un nod într-un graf?</p><br />
+                    <label><input type="radio" name="q2" value="a"> O linie care leagă două noduri.</label><br>
+                    <label><input type="radio" name="q2" value="b"> Un obiect care stochează date sau informații.</label><br>
+                    <label><input type="radio" name="q2" value="c"> Un set de conexiuni între mai multe noduri.</label><br>
+                    <label><input type="radio" name="q2" value="d"> Un set de arce care formează un ciclu. </label><br>
+                </div><br />
+
+                <div class="question">
+                    <p>3. Care dintre următoarele algoritme este folosit pentru a explora un graf în profunzime?</p><br />
+                    <label><input type="radio" name="q3" value="a"> Algoritmul Dijkstra</label><br>
+                    <label><input type="radio" name="q3" value="b"> Algoritmul BFS</label><br>
+                    <label><input type="radio" name="q3" value="c"> Algoritmul DFS</label><br>
+                    <label><input type="radio" name="q3" value="d"> Algoritmul Kruskal</label><br>
+                </div><br />
+
+                <div class="question">
+                    <p>4. Ce reprezintă un "ciclu" într-un graf?</p><br />
+                    <label><input type="radio" name="q4" value="a"> O secvență de noduri conectate de arce, unde primul și ultimul nod sunt aceleași.</label><br>
+                    <label><input type="radio" name="q4" value="b"> O componentă conexă a unui graf.</label><br>
+                    <label><input type="radio" name="q4" value="c"> Un graf fără muchii.</label><br>
+                    <label><input type="radio" name="q4" value="d"> Un algoritm care determină drumul cel mai scurt între două noduri.</label><br>
+                </div><br />
+
+                <div class="question">
+                    <p>5. Care dintre următoarele afirmatii este adevărată pentru grafurile neorientate?</p><br />
+                    <label><input type="radio" name="q5" value="a"> Arcele din grafuri nu pot fi duplicate.</label><br>
+                    <label><input type="radio" name="q5" value="b"> Arcele nu au sens, adică nu există o direcție între două noduri. </label><br>
+                    <label><input type="radio" name="q5" value="c"> Grafurile neorientate nu au componente conexe.</label><br>
+                    <label><input type="radio" name="q5" value="d"> Nu există niciun tip de algoritm utilizat pentru grafurile neorientate.</label><br>
+                </div><br />
+
+                <div class="question">
+                    <p>6. Ce reprezintă un arbor într-un graf?</p><br />
+                    <label><input type="radio" name="q6" value="a"> Un graf cu un singur ciclu.</label><br>
+                    <label><input type="radio" name="q6" value="b"> Un graf în care nu există cicluri. </label><br>
+                    <label><input type="radio" name="q6" value="c"> Un graf cu mai multe componente conexe.</label><br>
+                    <label><input type="radio" name="q6" value="d"> Un subgraf în care toate nodurile sunt conectate direct. </label><br>
+                </div><br />
+
+                <div class="question">
+                    <p>7. Care dintre următoarele descriere ale algoritmului BFS este corectă?</p><br />
+                    <label><input type="radio" name="q7" value="a"> BFS explorează grafurile prin parcurgerea acestora pe nivele. </label><br>
+                    <label><input type="radio" name="q7" value="b"> BFS este utilizat pentru a găsi cel mai scurt drum într-un graf ponderat.</label><br>
+                    <label><input type="radio" name="q7" value="c"> BFS parcurge grafurile din rădăcină până la frunze.</label><br>
+                    <label><input type="radio" name="q7" value="d"> BFS folosește o tehnică de explorare în adâncime.</label><br>
+                </div><br />
+
+                <div class="question">
+                    <p>8. Care este complexitatea de timp a algoritmului BFS pe un graf neorientat?</p><br />
+                    <label><input type="radio" name="q8" value="a"> O(n)</label><br>
+                    <label><input type="radio" name="q8" value="b"> O(n + m)</label><br>
+                    <label><input type="radio" name="q8" value="c"> O(m log n)</label><br>
+                    <label><input type="radio" name="q8" value="d"> O(n^2)</label><br>
+                </div><br />
+
+                <div class="question">
+                    <p>9. Ce este un graf ponderat?</p><br />
+                    <label><input type="radio" name="q9" value="a"> Un graf în care fiecare arc are o valoare asociată (greutate).</label><br>
+                    <label><input type="radio" name="q9" value="b"> Un graf în care toate arcele sunt egale.</label><br>
+                    <label><input type="radio" name="q9" value="c"> Un graf fără muchii.</label><br>
+                    <label><input type="radio" name="q9" value="d"> Un graf în care fiecare nod este conectat la cel puțin un alt nod.</label><br>
+                </div><br />
+
+                <div class="question">
+                    <p>10. Ce face algoritmul Dijkstra? </p> <br />
+                    <label><input type="radio" name="q10" value="a"> Găsește cel mai scurt drum într-un graf neponderat.</label><br>
+                    <label><input type="radio" name="q10" value="b"> Găsește cel mai scurt drum într-un graf ponderat. </label><br>
+                    <label><input type="radio" name="q10" value="c"> Găsește cel mai lung drum într-un graf ponderat.</label><br>
+                    <label><input type="radio" name="q10" value="d"> Găsește toate componentele conexe ale unui graf.</label><br>
+                </div><br />
+
+                <button type="submit" id="submitQuiz">Trimite</button>
+            </form>
+            <div id="result" style="display:none;">
+                <h3>Rezultate:</h3>
+                <p id="score"></p>
+            </div>
+        </section>
+
+        <script>
+            document.getElementById("quizForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                var correctAnswers = {
+                    q1: "b",
+                    q2: "b",
+                    q3: "c",
+                    q4: "a",
+                    q5: "b",
+                    q6: "b",
+                    q7: "a",
+                    q8: "b",
+                    q9: "a",
+                    q10: "b"
+                };
+
+                var score = 0;
+                var totalQuestions = 10;
+
+                for (var i = 1; i <= totalQuestions; i++) {
+                    var selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                    if (selectedAnswer && selectedAnswer.value === correctAnswers[`q${i}`]) {
+                        score++;
+                    }
+                }
+
+                document.getElementById("score").innerText = `Ai răspuns corect la ${score} din ${totalQuestions} întrebări.`;
+                document.getElementById("result").style.display = "block";
+            });
+        </script>
+
+
+
+        <!-- Contact -->
+        <section id="contact" class="content-section">
+            <h2>Contact</h2>
+            <p>Ai întrebări sau sugestii? Contactează-ne!</p>
+            <form>
+                <input type="text" placeholder="Nume" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Mesaj" required></textarea>
+                <button type="submit">Trimite</button>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Grafuri Neorientate. Toate drepturile rezervate.</p>
+        </footer>
+
+        <script>
+            function changeExample(example) {
+                document.getElementById('bfs').style.display = 'none';
+                document.getElementById('dfs').style.display = 'none';
+                document.getElementById('dijkstra').style.display = 'none';
+
+                document.getElementById(example).style.display = 'block';
+            }
+
+            // Inițial, se va afișa BFS
+            changeExample('bfs');
+        </script>
+
+        
+
+
+</body>
+</html>
